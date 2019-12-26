@@ -45,6 +45,8 @@ public class StreamSQLExample {
         Table result = tEnv.sqlQuery("SELECT * FROM " + tableA + " WHERE amount > 2 UNION ALL " +
                 "SELECT * FROM OrderB WHERE amount < 2");
 
+        System.out.println(tEnv.explain(result));
+
         tEnv.toAppendStream(result, Order.class).print();
 
         env.execute();
